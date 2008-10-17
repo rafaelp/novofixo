@@ -1,0 +1,56 @@
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+
+describe PhoneEntriesController, "test with VALID phone entry" do
+
+  before(:each) do
+    @phone_entry = mock_model(PhoneEntry, {
+      :save => true,
+      :old_ddd => 51,
+      :old_number => 81518930,
+      :new_ddd => 51,
+      :new_number => 81238153
+    })
+    PhoneEntry.stub!(:new).and_return(@phone_entry)
+  end
+  
+  def do_create
+    post :create, :phone_entry => { "old_number" => "8151.8930", "new_number" => "8123-8153" }
+  end
+end
+
+describe PhoneEntriesController, "test with INVALID phone entry" do
+
+  before(:each) do
+    @phone_entry = mock_model(PhoneEntry, { :save => false, :old_number => "8151.8930", :new_number => "8123-8153" })
+    PhoneEntry.stub!(:new).and_return(@phone_entry)
+  end
+
+  def do_create
+    post :create, :phone_entry => { "old_number" => "8151.8930", "new_number" => "8123-8153" }
+  end
+
+  it "should create the phone entry" do
+    PhoneEntry.should_receive(:new).with("old_number" => "8151.8930", "new_number" => "8123-8153").and_return(@phone_entry)
+    do_create
+  end
+
+  it "should save the phone entry" do
+    @phone_entry.should_receive(:save).and_return(false)
+    do_create 
+  end
+  
+  it "should assign phone entry" do
+    do_create
+    assigns(:phone_entry).should == @phone_entry
+  end
+  
+  it "should success" do
+    do_create
+    response.should be_success
+  end
+  
+  it "should re-render form new" do
+    do_create
+    response.should render_template(:new)
+  end
+end

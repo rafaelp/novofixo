@@ -1,0 +1,9 @@
+if !@captcha_passed
+  html = '<h2>O código da imagem não corresponde</h2><p id="new_phone_entry">Você deve digitar os caracteres exatamente como aparecem</p>' + link_to_remote('Voltar', :url => { :action => 'search' }, :method => 'get', :html => { :id => 'back_search', :style => 'color:#FFFFFF' })
+elsif @phone_entry
+  html = "<h2>O número encontrado foi</h2><p id=\"new_phone_entry\">#{@phone_entry.new_ddd} #{@phone_entry.new_number}</p>" + link_to_remote('Voltar', :update => 'right_side', :url => { :action => 'search' }, :html => { :id => 'back_search', :style => 'color:#FFFFFF' })
+else
+  html = '<h2>Não foi encontrado um número novo</h2><p id="new_phone_entry">Verifique o número digitado e tente novamente</p>' + link_to_remote('Voltar', :update => 'right_side', :url => { :action => 'search' }, :html => { :id => 'back_search', :style => 'color:#FFFFFF' })
+end
+
+page.replace_html 'right_side', html

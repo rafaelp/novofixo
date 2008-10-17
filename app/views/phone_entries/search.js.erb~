@@ -1,0 +1,7 @@
+if !@captcha_passed
+  page.replace_html 'right_side', '<h2>O código da imagem não corresponde</h2><p id="new_phone_entry">Você deve digitar os caracteres exatamente como aparecem</p>'
+elsif @phone_entry
+  page.replace_html 'right_side', '<h2>O número encontrado foi</h2><p id="new_phone_entry">' + @phone_entry.new_ddd + ' ' + @phone_entry.new_number + '</p>'
+else
+  page.replace_html 'right_side', '<h2>Não foi encontrado um número novo</h2><p id="new_phone_entry">Verifique o número digitado e tente novamente</p>'
+end

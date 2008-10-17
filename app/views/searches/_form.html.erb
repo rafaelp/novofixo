@@ -1,0 +1,23 @@
+<div class="SearchNumber col50">
+  <h2>Busque pelo novo número</h2>
+  <p>Escreva o número antigo do celular para fazer a busca.</p>
+  <% remote_form_for(:search, :url => { :controller => 'search' }, :html => { :class => 'f_form', :id => 'f_search' }) do |f| %>
+    <p>
+      <%= f.label(:old_ddd, 'Número Antigo') %>
+      <%= f.text_field(:old_ddd, :size => 2, :maxlength => 2, :class => 'f_text') %>
+      <%= f.text_field(:old_number, :size => 8, :maxlength => 8, :class => 'f_text') %>
+    </p>
+    <p>
+      <span id="search_captcha">
+        <%= render(:partial => 'shared/captcha', :locals => { :form => 'search' }) %>
+      </span>
+    </p>
+    <p>
+      <span id="f_search_submit">
+        <%= submit_tag('Buscar o número novo', :id => 'search_phone_entry') %>
+      </span>
+    </p>
+    <span id="f_search_submit_wait" style="display: none">Aguarde enquanto processamos...</span>
+  <% end %>
+  <p id="search_results"></p>
+</div>

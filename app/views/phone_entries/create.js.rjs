@@ -1,0 +1,10 @@
+html = ''
+if !@captcha_passed
+  html = '<h2>O código da imagem não corresponde</h2><p>Você deve digitar os caracteres exatamente como aparecem</p>'
+elsif @phone_entry_saved
+  html = '<h2>Novo número cadastrado com sucesso!</h2>'
+else
+  html = '<h2>Não foi possível cadastrar seu número novo</h2>'
+end
+
+page.replace_html 'right_side', html + link_to_remote('Voltar', :url => formatted_new_search_url(:js), :method => 'get', :html => { :id => 'back_search', :style => 'color:#FFFFFF' })

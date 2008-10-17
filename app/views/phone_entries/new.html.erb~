@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <meta name="author" content="Rafael Lima" />
+    <meta name="copyright" content="BielSystems Consultoria e Tecnologia Ltda" />
+    <meta name="keywords" content="novo, número, numero, cel, celular, telefone, tel, mudar, mudou, anatel" />
+    <meta name="description" content="Vai mudar o número do celular ou quer saber o novo número de alguém, aqui é o lugar!" />
+    <title>Novotel.com.br</title>
+
+    <link rel="SHORTCUT ICON" href="/favicon.ico" />
+    <%= stylesheet_link_tag "style" %>
+</head>
+<body>
+<div class="Container row">
+  <div class="Header row">
+    <h1><span>Novotel.com.br</span></h1>
+  </div>
+  <div class="Content row">
+    <div class="row">
+      <div class="SearchNumber col50">
+        <h2>Busque pelo novo número</h2>
+        <p>Escreva o número antigo do celular para fazer a busca.</p>
+        <% form_for(:search, :url => { :controller => 'search' }, :html => { :class => 'f_form', :id => 'f_search' }) do |f| %>
+          <p>
+            <%= f.label(:old_ddd, 'Número Antigo') %>
+            <%= f.text_field(:old_ddd, :size => 2, :maxlength => 2, :class => 'f_text') %>
+            <%= f.text_field(:old_number, :size => 8, :maxlength => 8, :class => 'f_text') %>
+          </p>
+          <p>
+            <span id="f_search_submit">
+              <%= submit_tag('Buscar o número novo', :id => 'search_phone_entry') %>
+            </span>
+          </p>
+          <span id="f_search_submit_wait" style="display: none">Aguarde enquanto processamos...</span>
+        <% end %>
+        <p id="search_results"></p>
+      </div>
+      <div class="AddNumber col">
+        <h2>Informe o seu novo número</h2>
+        <p>Cadastre o seu novo número para que as pessoas possam lhe achar :)</p>
+        <div id="add_form">
+          <% form_for(PhoneEntry.new, :html => { :class => 'f_form' }) do |f| %>
+            <p>
+              <%= f.label(:old_ddd, 'Número Antigo') %>
+              <%= f.text_field(:old_ddd, :size => 2, :maxlength => 2, :class => 'f_text') %>
+              <%= f.text_field(:old_number, :size => 8, :maxlength => 8, :class => 'f_text') %>
+            </p>
+            <p>
+              <%= f.label(:new_ddd, 'Novo Número') %>
+              <%= f.text_field(:new_ddd, :size => 2, :maxlength => 2, :class => 'f_text') %>
+              <%= f.text_field(:new_number, :size => 8, :maxlength => 8, :class => 'f_text') %>
+            </p>
+            <p>
+              <%= f.label(:name, 'Nome para Identificação') %>
+              <%= f.text_field(:name, :size => 20, :maxlength => 20, :class => 'f_text') %>
+            </p>
+            <span id="f_add_submit">
+              <%= submit_tag('Cadastrar', :id => 'save_phone_entry') %>
+            </span>
+            <span id="f_add_submit_wait" style="display: none">Aguarde enquanto processamos...</span>
+          <% end %>
+          <% if flash[:notice] -%>
+            <p id="add_results"><%= flash[:notice] %></p>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Footer row">
+    <p>Copyright©2008 BielSystems.</p>
+  </div>
+</div>
+</body>
+</html>

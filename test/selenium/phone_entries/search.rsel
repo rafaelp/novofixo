@@ -1,0 +1,49 @@
+#class File
+#  def read
+#    "0"
+#  end
+#end
+
+setup :clear_tables => 'all', :factories => 'phone_entries'
+
+open '/phone_entries'
+assert_title 'Novotel.com.br'
+
+assert_element_present '//div/div/div/form[@id="f_search"]'
+
+# testa a mensagem de erro do captcha
+
+type 'search_old_ddd', 12
+type 'search_old_number', 34567890
+type 'search_bacon', 'ERRADO'
+
+click '//input[@id="search_phone_entry"]'
+
+wait_for_element_present '//h2[text()="O código da imagem não corresponde"]'
+assert_element_present '//p[text()="Você deve digitar os caracteres exatamente como aparecem"]'
+
+click '//a[@id="back_search"]'
+
+# testa se foi feita uma busca por um numero nao cadastrado
+
+type 'search_old_ddd', 12
+type 'search_old_number', 34567890
+type 'search_bacon', 'CERTO'
+
+click '//input[@id="search_phone_entry"]'
+
+wait_for_element_present '//h2[text()="Não foi encontrado um número novo"]'
+assert_element_present '//p[text()="Verifique o número digitado e tente novamente"]'
+
+click '//a[@id="back_search"]'
+
+# faz a busca por um numero que existe
+
+type 'search_old_ddd', @test_phone_entry.old_ddd
+type 'search_old_number', @test_phone_entry.old_number
+type 'search_bacon', 'CERTO'
+
+click '//input[@id="search_phone_entry"]'
+
+wait_for_element_present '//h2[text()="O número encontrado foi"]'
+assert_element_present "//p[text()=\"#{@test_phone_entry.new_ddd} #{@test_phone_entry.new_number}\"]"
