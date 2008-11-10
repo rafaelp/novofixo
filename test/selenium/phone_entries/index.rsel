@@ -1,6 +1,6 @@
 setup :clear_tables => :all, :factories => 'phone_entries'
 open '/phone_entries'
-assert_title 'Novotel.com.br'
+# assert_title 'Cadastro de Telefones - Novofixo.com.br'
 
 assert_element_present '//div/div/div/form[@action="/phone_entries"]'
 assert_element_present '//div/div/div/form[@action="/phone_entries"]'

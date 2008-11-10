@@ -1,5 +1,0 @@
-<%= render :partial => 'search_form' %>
-<div id="right_side" class="AddNumber col">
-  <%= render :partial => 'search_result' %>
-</div>
-

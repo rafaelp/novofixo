@@ -1,2 +1,0 @@
-page.replace_html 'right_side', :partial => 'phone_entries/form'
-page.replace_html 'search_captcha', :partial => 'shared/captcha', :locals => { :form => 'search' }

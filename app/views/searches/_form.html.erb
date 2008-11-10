@@ -1,6 +1,6 @@
 <div class="SearchNumber col50">
-  <h2>Busque pelo novo número</h2>
-  <p>Escreva o número antigo do celular para fazer a busca.</p>
+  <h2>Busque pelo número antigo</h2>
+  <p>Escreva o número antigo do telefone para fazer a busca.</p>
   <% remote_form_for(:search, :url => { :controller => 'search' }, :html => { :class => 'f_form', :id => 'f_search' }) do |f| %>
     <p>
       <%= f.label(:old_ddd, 'Número Antigo') %>

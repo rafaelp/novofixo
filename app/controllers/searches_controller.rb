@@ -8,7 +8,6 @@ class SearchesController < ApplicationController
 
   def create
     @captcha_passed = captcha_pass?(params[:search_chunky], params[:search_bacon])
-
     if @captcha_passed
       @phone_entries = PhoneEntry.find_new_numbers(params[:search][:old_ddd], params[:search][:old_number])
     end

@@ -11,16 +11,6 @@
 
 ActiveRecord::Schema.define(:version => 20080902215947) do
 
-  create_table "entries", :force => true do |t|
-    t.string   "name"
-    t.integer  "old_ddd",    :null => false
-    t.integer  "old_number", :null => false
-    t.integer  "new_ddd",    :null => false
-    t.integer  "new_number", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "phone_entries", :force => true do |t|
     t.integer  "old_ddd"
     t.integer  "old_number"

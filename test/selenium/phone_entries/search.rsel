@@ -7,7 +7,6 @@
 setup :clear_tables => 'all', :factories => 'phone_entries'
 
 open '/phone_entries'
-assert_title 'Novotel.com.br'
 
 assert_element_present '//div/div/div/form[@id="f_search"]'
 

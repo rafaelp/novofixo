@@ -107,8 +107,3 @@ margin: 0 ;
 padding: 0 0 0 12em;
 border: 0px solid red;
 }
-
-
-
-
-<p><label for="f_NomeLabel">NomeLabel</label> <input id="f_NomeLabel" class="InputTextField" name="textfieldName" type="text"  size="24" /></p>

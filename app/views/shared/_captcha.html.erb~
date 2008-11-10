@@ -1,4 +1,0 @@
-<% session_id = rand(10_000) -%>
-<img src="http://captchator.com/captcha/image/<%= session_id -%>" /><br/>
-<input name="<%= form %>_chunky" type="hidden" value="<%= session_id -%>" />
-<input name="<%= form %>_bacon" type="text" size="10" class="f_text" />

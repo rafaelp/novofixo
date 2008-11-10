@@ -1,9 +1,8 @@
 setup :clear_tables => :all
 
 open '/phone_entries'
-assert_title 'Novotel.com.br'
 
-assert_element_present '//div/div/h1/span[text()="Novotel.com.br"]'
+assert_element_present '//div/div/h1/span[text()="Novofixo.com.br"]'
 assert_element_present '//div/div/div/form[@action="/phone_entries"]'
 
 ## captcha invalido
